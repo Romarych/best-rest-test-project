@@ -10,6 +10,7 @@ const PostForm: FC<FormPropsType> = (isOption) => {
   const [isErrorCountry, setIsErrorCountry] = useState<boolean>(false);
   const [isTerms, setIsTerms] = useState<boolean>(false);
   const [isPhone, setIsPhone] = useState<boolean>(false);
+  const [isSubmit, setIsSubmit] = useState<boolean>(false);
   const [isCheckbox, stIsCheckbox] = useState<boolean>(true);
   const [select, setSelect] = useState<string>('');
   const [index, setIndex] = useState<number>();
@@ -122,7 +123,7 @@ const PostForm: FC<FormPropsType> = (isOption) => {
                         id="floatingSelect" className='peer m-0 relative block h-[56px] w-full rounded border border-solid pl-[50px] border-white bg-black-2 hover:border-green-1 bg-clip-padding px-3 py-4 text-base font-normal leading-tight transition duration-300 ease-linear placeholder:text-transparent focus:border-primary focus:pb-[0.625rem] focus:pt-[1.625rem] focus:outline-none peer-focus:text-primary [&:not(:placeholder-shown)]:pb-[0.625rem] [&:not(:placeholder-shown)]:pt-[1.625rem]'>
                         <div className='text-left text-base font-normal leading-tight'>{select}</div>
                         <div className={`border-l-2 border-b-2 border-white absolute right-0 top-5 h-2.5 w-2.5 inline-block ${isCountry ? 'rotate-[135deg] top-6' : '-rotate-45'} duration-300 mr-4`} />
-                        {isErrorCountry && !isCountry && !select ? <div className="w-full absolute -bottom-6 left-0 text-red-1 mx-auto text-[10px] font-medium text-right">Fill in the field</div> : ''}
+                        {(isErrorCountry && !isCountry && !select) || (isSubmit && !isCountry && !select) ? <div className="w-full absolute -bottom-6 left-0 text-red-1 mx-auto text-[10px] font-medium text-right">Fill in the field</div> : ''}
                       </div>
                       {isCountry && <ul className='w-full h-[159px] overflow-auto absolute z-20 bg-white block rounded-md text-left cursor-pointer'>
                         {countries.map((country, index) => <li key={country} onClick={() => {
@@ -152,7 +153,7 @@ const PostForm: FC<FormPropsType> = (isOption) => {
             </div>
             <button onClick={() => {
               stIsCheckbox(isTerms);
-              setIsPhone(true);
+              setIsSubmit(true);
             }}
               className='bg-green-1 w-full md:w-[165px] h-[56px] hover:bg-transparent duration-300 border focus:bg-green-1 focus:text-black-1 border-green-1 hover:text-green-1 rounded-md font-medium text-black-1 leading-6 text-lg' type='submit'>Sign Up</button>
           </Form>
