@@ -153,6 +153,7 @@ const PostForm: FC<FormPropsType> = (isOption) => {
             </div>
             <button onClick={() => {
               stIsCheckbox(isTerms);
+              setIsPhone(true);
               setIsSubmit(true);
             }}
               className='bg-green-1 w-full md:w-[165px] h-[56px] hover:bg-transparent duration-300 border focus:bg-green-1 focus:text-black-1 border-green-1 hover:text-green-1 rounded-md font-medium text-black-1 leading-6 text-lg' type='submit'>Sign Up</button>
